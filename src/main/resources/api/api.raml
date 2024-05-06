@@ -1,0 +1,25 @@
+#%RAML 1.0
+title: Mule Sleep Thread Example
+version: v1
+
+/endpoints:
+  get:
+    responses:
+      200:
+        body:
+          application/json: |
+            {
+              "endpoints": ["endpoints"]
+            }
+            
+/sleep:
+  get:
+    queryParameters:
+      time:
+        type: number
+      timeUnit:
+        default: "SECONDS"
+        enum:
+          - MILLISECONDS
+          - SECONDS
+          - MINUTES
