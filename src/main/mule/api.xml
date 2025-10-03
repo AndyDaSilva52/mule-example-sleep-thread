@@ -75,9 +75,9 @@ var endpoints = readUrl('classpath://api.xml', 'application/xml' ).mule.*flow.@n
 			variableName="start"/>
 		<logger
 			level="INFO"
-			doc:name="BEFORE_SLEEP"
+			doc:name="BEFORE"
 			doc:id="bc29ecfa-0a58-4719-9a03-b87924df43cd"
-			message='#[output json --- {"step": "BEFORE_SLEEP", "start": vars.start }]'/>
+			message='#[output json --- {"tracepoint": "BEFORE", "start": vars.start }]'/>
 		<scripting:execute
 			engine="Groovy"
 			doc:name="Thread.sleep"
@@ -109,14 +109,13 @@ var diff = (end - vars.start)
 	duration: dw::core::Periods::duration( {
 		seconds: (diff/1000)
 	} )
-}
-/** */]]></ee:set-payload>
+}]]></ee:set-payload>
 			</ee:message>
 		</ee:transform>
 		<logger
 			level="INFO"
-			doc:name="AFTER_SLEEP"
+			doc:name="AFTER"
 			doc:id="9420d8a3-a87e-4931-925f-6b5d3cc95ede"
-			message='#[output json --- {step: "AFTER_SLEEP" } ++ payload]'/>
+			message='#[output json --- {"tracepoint": "AFTER" } ++ payload]'/>
 	</flow>
 </mule>
